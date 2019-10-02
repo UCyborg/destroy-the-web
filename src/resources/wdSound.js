@@ -126,8 +126,7 @@ WebDestroyer.Sound = {
   _isSoundEnabled : function() {
     this._logger.trace("_isSoundEnabled");
 
-    return WebDestroyer.Application.prefs.
-      get(WebDestroyer.PREF_BRANCH + "sound").value;
+    return WebDestroyer.Prefs.getBoolPref("sound");
   },
 
   /**
@@ -227,13 +226,11 @@ WebDestroyer.Sound = {
   _getNextBGMusicIndex : function() {
     this._logger.trace("_getNextBGMusicIndex");
 
-    let i = WebDestroyer.Application.prefs.
-      get(WebDestroyer.PREF_BRANCH + "lastMusic").value;
+    let i = WebDestroyer.Prefs.getIntPref("lastMusic");
 
     i = Math.max(0, (i+1) % NUM_BGMUSIC);
 
-    WebDestroyer.Application.prefs.
-      setValue(WebDestroyer.PREF_BRANCH + "lastMusic", i);
+    WebDestroyer.Prefs.setIntPref("lastMusic", i);
 
     return i;
   },

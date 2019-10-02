@@ -63,17 +63,9 @@ WebDestroyerChrome.BrowserOverlay = {
     this._updateStatusbarButton();
 
     // Perform first run operations
-    if (Application.extensions) {
-        let extension = Application.extensions.get(WebDestroyer.EXTENSION_UUID);
-        if (extension && extension.firstRun)
-          this._installToolbarButton();
-    }
-    else if (Application.getExtensions) {
-      Application.getExtensions(function(extensions) {
-        let extension = extensions.get(WebDestroyer.EXTENSION_UUID);
-        if (extension && extension.firstRun)
-          WebDestroyerChrome.BrowserOverlay._installToolbarButton();
-      });
+    if (WebDestroyer.Prefs.getBoolPref("firstRun")) {
+        this._installToolbarButton();
+        WebDestroyer.Prefs.setBoolPref("firstRun", false);
     }
   },
 

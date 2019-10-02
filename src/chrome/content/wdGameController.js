@@ -100,10 +100,8 @@ WebDestroyerChrome.GameController = {
         return;
       }
       // Check if this is the first game, prompting for help
-      if (WebDestroyer.Application.prefs.
-          get(WebDestroyer.PREF_BRANCH + "firstGame").value) {
-        WebDestroyer.Application.prefs.
-          setValue(WebDestroyer.PREF_BRANCH + "firstGame", false);
+      if (WebDestroyer.Prefs.getBoolPref("firstGame")) {
+        WebDestroyer.Prefs.setBoolPref("firstGame", false);
 
         let rulesResult = promptService.confirm(
           window,

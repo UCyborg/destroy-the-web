@@ -65,9 +65,7 @@ WebDestroyerChrome.Animation = {
   _getAnimationQuality : function() {
     this._logger.trace("_getAnimationQuality");
 
-    let quality =
-      Application.prefs.
-        get(WebDestroyer.PREF_BRANCH + "animationQuality").value;
+    let quality = WebDestroyer.Prefs.getIntPref("animationQuality");
 
     // Reset to HIGH in case it was changed outside the accepted values
     if (quality != WEBDESTROYER_ANIMATION_QUALITY_HIGH &&
@@ -75,8 +73,7 @@ WebDestroyerChrome.Animation = {
         quality != WEBDESTROYER_ANIMATION_QUALITY_LOW &&
         quality != WEBDESTROYER_ANIMATION_QUALITY_NO) {
       quality = WEBDESTROYER_ANIMATION_QUALITY_HIGH;
-      Application.prefs.
-        setValue(WebDestroyer.PREF_BRANCH + "animationQuality", quality);
+      WebDestroyer.Prefs.setIntPref("animationQuality", quality);
     }
 
     return quality;

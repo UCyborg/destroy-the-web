@@ -27,6 +27,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
 
+pref("extensions.webdes.firstRun", true);
 pref("extensions.webdes.firstGame", true);
 pref("extensions.webdes.sound", true);
 pref("extensions.webdes.lastMusic", -1);

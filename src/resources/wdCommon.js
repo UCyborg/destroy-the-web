@@ -39,17 +39,15 @@ Components.utils.import("resource://webdes/log4moz.js");
  */
 if (typeof(WebDestroyer) == 'undefined') {
   var WebDestroyer = {
-    /* The FUEL Application object. */
-    get Application() { return this._application; },
-    /* The Fire.fm extension UUID */
-    get EXTENSION_UUID() { return "{7BDB48D1-CD94-4B99-A5A4-E418B9EE6532}"; },
+    /* The preferences object. */
+    get Prefs() { return this._prefs; },
     /* The root branch for all WebDestroyer preferences. */
     get PREF_BRANCH() { return "extensions.webdes."; },
 
     /* The logger for this object. */
     _logger : null,
-    /* The FUEL Application object. */
-    _application : null,
+    /* The preferences object. */
+    _prefs : null,
     /* Reference to the observer service. We use this one a lot. */
     obsService : null,
     /* Overlay string bundle. */
@@ -83,8 +81,9 @@ if (typeof(WebDestroyer) == 'undefined') {
       this._logger = this.getLogger("WebDestroyer");
       this._logger.debug("init");
 
-      this._application =
-        Cc["@mozilla.org/fuel/application;1"].getService(Ci.fuelIApplication);
+      this._prefs =
+        Cc["@mozilla.org/preferences-service;1"].getService(Ci.nsIPrefService);
+      this._prefs = this._prefs.getBranch(this.PREF_BRANCH);
       this.obsService =
         Cc["@mozilla.org/observer-service;1"].getService(Ci.nsIObserverService);
       this.overlayBundle =
