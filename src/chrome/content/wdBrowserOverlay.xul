@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+
+<!--
+  - Copyright (c) 2009, Jose Enrique Bolanos
+  - All rights reserved.
+  -
+  - Redistribution and use in source and binary forms, with or without
+  - modification, are permitted provided that the following conditions are met:
+  -
+  -  * Redistributions of source code must retain the above copyright notice,
+  -    this list of conditions and the following disclaimer.
+  -  * Redistributions in binary form must reproduce the above copyright notice,
+  -    this list of conditions and the following disclaimer in the documentation
+  -    and/or other materials provided with the distribution.
+  -  * Neither the name of Jose Enrique Bolanos nor the names
+  -    of its contributors may be used to endorse or promote products derived
+  -    from this software without specific prior written permission.
+  -
+  - THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  - "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  - LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  - A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER
+  - OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+  - EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+  - PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+  - PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+  - LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+  - NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+  - SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  -->
+
+<?xml-stylesheet type="text/css" href="chrome://global/skin/" ?>
+<?xml-stylesheet type="text/css"
+  href="chrome://webdes/skin/wdBrowserOverlay.css" ?>
+<?xml-stylesheet type="text/css" href="chrome://webdes-os/skin/wdToolbar.css" ?>
+
+<!DOCTYPE overlay [
+  <!ENTITY % overlayDTD SYSTEM "chrome://webdes/locale/wdBrowserOverlay.dtd" >
+  %overlayDTD;
+  <!ENTITY % browserDTD SYSTEM "chrome://browser/locale/browser.dtd" >
+  %browserDTD;
+]>
+
+<overlay id="webdes-browser-overlay"
+  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+  <script type="application/x-javascript"
+    src="chrome://webdes/content/wdConstants.js" />
+  <script type="application/x-javascript"
+    src="chrome://webdes/content/wdBrowserOverlay.js" />
+  <script type="application/x-javascript"
+    src="chrome://webdes/content/wdPageListener.js" />
+  <script type="application/x-javascript"
+    src="chrome://webdes/content/wdGameController.js" />
+  <script type="application/x-javascript"
+    src="chrome://webdes/content/wdGameView.js" />
+  <script type="application/x-javascript"
+    src="chrome://webdes/content/wdAnimation.js" />
+
+  <toolbarpalette id="BrowserToolbarPalette">
+    <toolbarbutton id="webdes-play-button"
+      class="toolbarbutton-1 chromeclass-toolbar-additional wd-button"
+      label="&webdes.play.label;"
+      tooltiptext="&webdes.play.tooltip;"
+      observes="webdes-play-button-broadcaster"
+      oncommand="WebDestroyerChrome.BrowserOverlay.play(event);" />
+  </toolbarpalette>
+
+  <statusbar id="status-bar">
+    <statusbarpanel id="webdes-statusbar-panel" hidden="true"
+      insertbefore="statusbar-updates">
+      <hbox align="center">
+        <image id="webdes-statusbar-play-button"
+          tooltiptext="&webdes.play.tooltip;"
+          observes="webdes-play-button-broadcaster"
+          onclick="if (this.getAttribute('disabled') != 'true') WebDestroyerChrome.BrowserOverlay.play(event);"/>
+      </hbox>
+    </statusbarpanel>
+  </statusbar>
+
+  <window id="main-window">
+    <stringbundleset id="stringbundleset">
+      <stringbundle id="webdes-string-bundle"
+        src="chrome://webdes/locale/wdBrowserOverlay.properties" />
+    </stringbundleset>
+
+    <broadcasterset id="webdes-broadcasterset">
+      <broadcaster id="webdes-play-button-broadcaster" disabled="true" />
+    </broadcasterset>
+
+    <vbox id="browser-bottombox">
+      <hbox id="webdes-statusbar" insertbefore="FindToolbar" hidden="true">
+        <label id="webdes-statusbar-score-label"
+          value="&webdes.statusbar.score;"/>
+        <label id="webdes-statusbar-score-value"/>
+        <label id="webdes-statusbar-element" flex="1"/>
+        <label id="webdes-statusbar-timeLeft-label"
+          value="&webdes.statusbar.timeLeft;"/>
+        <label id="webdes-statusbar-timeLeft-value"/>
+      </hbox>
+    </vbox>
+  </window>
+
+</overlay>
