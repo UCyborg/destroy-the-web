@@ -5,7 +5,7 @@
     <em:id>{7BDB48D1-CD94-4B99-A5A4-E418B9EE6532}</em:id>
     <em:name>Destroy the Web</em:name>
     <em:description>Destroy the Web, one page at a time!</em:description>
-    <em:version>1.2.2.1</em:version>
+    <em:version>1.2.2.2</em:version>
     <em:creator>Jose Enrique Bolaños</em:creator>
     <em:developer>Jose Enrique Bolaños</em:developer>
     <em:homepageURL>http://www.destroytheweb.net</em:homepageURL>
@@ -18,7 +18,15 @@
       <Description>
         <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
         <em:minVersion>3.5</em:minVersion>
-        <em:maxVersion>19.*</em:maxVersion>
+        <em:maxVersion>55.*</em:maxVersion>
+      </Description>
+    </em:targetApplication>
+    <!-- Pale Moon -->
+    <em:targetApplication>
+      <Description>
+        <em:id>{8de7fcbb-c55c-4fbe-bfc5-fc555c87dbc4}</em:id>
+        <em:minVersion>25.0</em:minVersion>
+        <em:maxVersion>28.*</em:maxVersion>
       </Description>
     </em:targetApplication>
 
